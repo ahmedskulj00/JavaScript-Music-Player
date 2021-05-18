@@ -7,7 +7,7 @@ const progress = document.querySelector(".progress");
 const progressContainer = document.querySelector(".progress-container");
 const title = document.querySelector("#title");
 const cover = document.querySelector("#cover");
-
+const volume = document.querySelector("#volume");
 const songs = ["Love Me Again", "Radioactive", "Uncontrollable"];
 
 var songIndex = 2;
@@ -85,6 +85,18 @@ playBtn.addEventListener("click", () => {
   }
 });
 
+function muteSong() {
+  if (audio.muted == false) {
+    audio.muted = true;
+    volume.querySelector("i.fas").classList.remove("fa-volume-up");
+    volume.querySelector("i.fas").classList.add("fa-volume-mute");
+  } else {
+    audio.muted = false;
+    volume.querySelector("i.fas").classList.add("fa-volume-up");
+    volume.querySelector("i.fas").classList.remove("fa-volume-mute");
+  }
+}
+
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
 
@@ -93,3 +105,5 @@ audio.addEventListener("timeupdate", updateProgress);
 progressContainer.addEventListener("click", setProgress);
 
 audio.addEventListener("ended", nextSong);
+
+volume.addEventListener("click", muteSong);
